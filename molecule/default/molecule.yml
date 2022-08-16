@@ -5,7 +5,7 @@ driver:
   name: docker
 platforms:
   - name: instance
-    image: quay.io/centos/centos:stream8
+    image: tyatyushkin/ubuntu:focal
     pre_build_image: true
 provisioner:
   name: ansible
