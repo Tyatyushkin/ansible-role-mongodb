@@ -1,2 +1,12 @@
 ---
 # tasks file for mongodb
+- name: install gnupg
+  ansible.builtin.apt:
+    name: gnupg
+    state: present
+
+- name: add apt key for mongodb
+  ansible.builtin.apt_key:
+    url: https://www.mongodb.org/static/pgp/server-5.0.asc
+    validate_certs: false
+    state: present
