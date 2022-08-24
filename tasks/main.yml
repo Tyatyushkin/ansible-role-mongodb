@@ -17,8 +17,14 @@
     state: present
 
 - name: install mongodb
-  apt:
+  ansible.builtin.apt:
     name: mongodb-org
     update_cache: true
     state: present
 
+- name: enable systemd
+  ansible.builtin.systemd:
+    daemon_reload: true
+    name: mongod
+    enabled: true
+    state: started
