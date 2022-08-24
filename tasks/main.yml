@@ -2,7 +2,7 @@
 # tasks file for mongodb
 - name: install gnupg
   ansible.builtin.apt:
-    name: gnupg
+    name: [gnupg, ca-certificates]
     state: present
 
 - name: add apt key for mongodb
@@ -10,3 +10,15 @@
     url: https://www.mongodb.org/static/pgp/server-5.0.asc
     validate_certs: false
     state: present
+
+- name: add mongodb repo
+  ansible.builtin.apt_repository:
+    repo: "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse"
+    state: present
+
+- name: install mongodb
+  apt:
+    name: mongodb-org
+    update_cache: true
+    state: present
+
